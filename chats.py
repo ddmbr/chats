@@ -11,6 +11,7 @@ from dateutil import parser as date_parser
 from matplotlib import pyplot
 import matplotlib.ticker as ticker
 import numpy as np
+from binascii import a2b_qp
 
 class GChatLogs(object):
     """
@@ -122,7 +123,7 @@ class ChatLog(object):
         Writes the chat to a file in the directory.
         """
         f = open('%s/%s.chat' % (directory, self.id), 'w')
-        f.write(self.raw)
+        f.write(a2b_qp(self.raw))
         f.close()
 
     @classmethod
